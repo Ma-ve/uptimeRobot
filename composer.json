@@ -1,5 +1,5 @@
 {
-  "name": "Ma-ve/UptimeRobot",
+  "name": "ma-ve/uptimerobot",
   "description": "API wrapper for UptimeRobot API v1",
   "license": "MIT",
   "keywords": ["uptimerobot"],
