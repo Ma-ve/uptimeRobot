@@ -8,20 +8,16 @@ This is a PHP wrapper for https://uptimerobot.com/api
 PHP Class for UptimeRobot-API
 
 ```PHP
-require_once 'src/uptimerobot.php';
+require('vendor/autoload.php');
 
-$upRobot = new UptimeRobot();
-
-$upRobot::configure('YOUR-API-KEY', 1);
-
-$upRobot->setFormat('json'); //Define the format of responses (json or xml)
+$robot = new \Mave\UptimeRobot\UptimeRobot('YOUR_API_KEY', UptimeRobot::FORMAT_JSON);
 
 /**
  * Get all monitors
  */
 try
 {
-    $all = $upRobot->getMonitors();
+    $all = $robot->getMonitors();
     print_r($all);
 }
 catch (Exception $e)
@@ -34,7 +30,7 @@ catch (Exception $e)
  */
 try
 {
-    $monitor = $upRobot->getMonitors(0000);
+    $monitor = $robot->getMonitors(0000);
     echo $monitor->monitors->monitor[0]->status;
 }
 catch (Exception $e)
@@ -47,7 +43,18 @@ catch (Exception $e)
  */
 try
 {
-    $monitor2 = $upRobot->getMonitors($monitors = 0000, $customUptimeRatio = array('1', '7'), $logs = 1, $responseTimes = 1, $responseTimesAverage = 180, $alertContacts = 1, $showMonitorAlertContacts = 1, $showTimezone = 1);
+    $request = new \Mave\UptimeRobot\Request();
+    $request->setCustomUptimeRatio([1, 7]);
+    $request->setShowMonitorAlertContacts(true);
+    $request->setLogs(true);
+    $request->setResponseTimes(true);
+    $request->setResponseTimesAverage(180);
+    $request->setAlertContacts(true);
+    $request->setShowMonitorAlertContacts(true);
+    $request->setShowTimezone(true);
+
+    $robot->setRequest($request);
+    $monitor2 = $robot->getMonitors();
     print_r($monitor2);
 }
 catch (Exception $e)
@@ -58,6 +65,8 @@ catch (Exception $e)
 ```
 ## Authors
 
-Watchful - https://watchful.li/
+Wesley Buurke - https://www.wesleybuurke.nl/
+
+Original Class: Watchful - https://watchful.li/
 
 Original Class: Mark Boomaars - https://github.com/CodingOurWeb/PHP-wrapper-for-UptimeRobot-API

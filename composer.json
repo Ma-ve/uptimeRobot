@@ -1,0 +1,21 @@
+{
+  "name": "Ma-ve/UptimeRobot",
+  "description": "API wrapper for UptimeRobot API v1",
+  "license": "MIT",
+  "keywords": ["uptimerobot"],
+  "authors": [
+    {
+      "name": "Wesley Buurke",
+      "email": "info@wesleybuurke.nl"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mave\\UptimeRobot\\": "src"
+    }
+  }
+}
