@@ -131,7 +131,8 @@ class UptimeRobot
 		$arrays = ['monitors', 'types', 'statuses', 'customUptimeRatio',];
 		foreach($arrays as $array) {
 			$function = 'get' . ucfirst($array);
-			if(!empty($value = $this->getRequest()->$function())) {
+			$value = $this->getRequest()->$function();
+			if(!empty($value)) {
 				$url .= '&' . $array . '=' . $this->getImplode($value);
 			}
 		}
